@@ -1,0 +1,16 @@
+{
+  "name": "pip_boy_protfolio",
+  "version": "1.0.0",
+  "description": "my protfolio in fallout 3 style",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^6.2.5"
+  }
+}

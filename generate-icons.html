@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Pip-Boy Icons</title>
+  <style>
+    body {
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: monospace;
+      color: #0f0;
+    }
+    canvas {
+      border: 1px solid #333;
+      margin: 20px;
+    }
+    .buttons {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    button {
+      background-color: #003800;
+      color: #0f0;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-family: monospace;
+    }
+    button:hover {
+      background-color: #005800;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pip-Boy Icon Generator</h1>
+  <canvas id="canvas192" width="192" height="192"></canvas>
+  <canvas id="canvas512" width="512" height="512"></canvas>
+  
+  <div class="buttons">
+    <button id="download192">Download 192x192</button>
+    <button id="download512">Download 512x512</button>
+  </div>
+
+  <script>
+    // Draw Pip-Boy icon on canvas
+    function drawPipBoyIcon(canvas) {
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      const scale = width / 512; // Scale based on canvas size
+      
+      // Background
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Outer frame
+      const frameMargin = 60 * scale;
+      ctx.fillStyle = '#111';
+      ctx.strokeStyle = '#333';
+      ctx.lineWidth = 10 * scale;
+      roundRect(ctx, frameMargin, frameMargin, width - frameMargin * 2, height - frameMargin * 2, 40 * scale, true, true);
+      
+      // Screen
+      const screenMargin = 100 * scale;
+      ctx.fillStyle = '#000';
+      ctx.strokeStyle = '#0f0';
+      ctx.lineWidth = 5 * scale;
+      roundRect(ctx, screenMargin, screenMargin, width - screenMargin * 2, height - screenMargin * 2, 20 * scale, true, true);
+      
+      // PIP text
+      ctx.fillStyle = '#0f0';
+      ctx.font = `bold ${120 * scale}px monospace`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('PIP', width / 2, height / 2 - 30 * scale);
+      
+      // BOY text
+      ctx.font = `bold ${60 * scale}px monospace`;
+      ctx.fillText('BOY', width / 2, height / 2 + 60 * scale);
+      
+      // Top indicator light
+      ctx.fillStyle = '#0f0';
+      ctx.beginPath();
+      ctx.arc(width / 2, 180 * scale, 20 * scale, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Add glow effect
+      ctx.shadowColor = '#0f0';
+      ctx.shadowBlur = 10 * scale;
+      ctx.strokeStyle = '#0f0';
+      ctx.lineWidth = 2 * scale;
+      ctx.beginPath();
+      ctx.arc(width / 2, 180 * scale, 22 * scale, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+    
+    // Helper function for drawing rounded rectangles
+    function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      if (fill) {
+        ctx.fill();
+      }
+      if (stroke) {
+        ctx.stroke();
+      }
+    }
+    
+    // Draw icons on load
+    window.onload = function() {
+      const canvas192 = document.getElementById('canvas192');
+      const canvas512 = document.getElementById('canvas512');
+      
+      drawPipBoyIcon(canvas192);
+      drawPipBoyIcon(canvas512);
+      
+      // Download handlers
+      document.getElementById('download192').addEventListener('click', function() {
+        downloadCanvas(canvas192, 'pip-boy-icon-192.png');
+      });
+      
+      document.getElementById('download512').addEventListener('click', function() {
+        downloadCanvas(canvas512, 'pip-boy-icon-512.png');
+      });
+    };
+    
+    // Helper function to download canvas as image
+    function downloadCanvas(canvas, filename) {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>

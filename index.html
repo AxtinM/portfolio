@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohamed Attig - Pip-Boy Interface</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="theme-color" content="#0f0" />
+    <link rel="manifest" href="manifest.json" />
+  </head>
+  <body>
+    <!-- Power button overlay -->
+    <div class="power-button-overlay" id="powerButtonOverlay">
+      <div class="power-button" id="powerButton">
+        <div class="power-icon">⏻</div>
+        <div class="power-text">BOOT SEQUENCE</div>
+      </div>
+    </div>
+
+    <div class="pip-boy-frame">
+      <div class="pip-boy-container">
+        <div class="scanline"></div>
+        <div class="screen-glitch" id="screenGlitch"></div>
+        <div class="vignette"></div>
+        <div class="glow"></div>
+
+      <header>
+        <div class="status-bar">
+          <div class="health-info">HP 434/434</div>
+          <div class="level-info">LEVEL 60</div>
+          <div class="ap-info">AP 145/145</div>
+        </div>
+
+        <nav class="main-nav">
+          <ul>
+            <li class="nav-item" data-section="stat">STAT</li>
+            <li class="nav-item" data-section="inv">INV</li>
+            <li class="nav-item active" data-section="data">DATA</li>
+            <li class="nav-item" data-section="map">MAP</li>
+            <li class="nav-item" data-section="radio">RADIO</li>
+          </ul>
+        </nav>
+
+        <nav class="sub-nav">
+          <ul>
+            <li class="subnav-item active" data-section="portfolio">
+              PORTFOLIO
+            </li>
+            <li class="subnav-item" data-section="projects">PROJECTS</li>
+            <li class="subnav-item" data-section="skills">SKILLS</li>
+            <li class="subnav-item" data-section="contact">CONTACT</li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="content-area">
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section active">
+          <div class="vault-boy-container">
+            <img
+              src="/assets/images/vault-boy.png"
+              alt="Vault Boy"
+              class="vault-boy"
+            />
+          </div>
+
+          <div class="info-panel">
+            <h1 class="name">MOHAMED ATTIG</h1>
+            <h2 class="title">FULL STACK DEVELOPER</h2>
+            <p class="description">
+              Experienced Full Stack Developer with expertise in React, Django,
+              and Node.js. Proven track record in delivering scalable web
+              applications and AI-powered solutions for international clients.
+            </p>
+
+            <div class="pip-stats">
+              <div class="stat-item">
+                <span class="stat-name">Strength</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 80%"></div>
+                </div>
+                <span class="stat-value">8</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-name">Perception</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 70%"></div>
+                </div>
+                <span class="stat-value">7</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-name">Endurance</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 90%"></div>
+                </div>
+                <span class="stat-value">9</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-name">Charisma</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 70%"></div>
+                </div>
+                <span class="stat-value">7</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-name">Intelligence</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 90%"></div>
+                </div>
+                <span class="stat-value">9</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-name">Agility</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 80%"></div>
+                </div>
+                <span class="stat-value">8</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-name">Luck</span>
+                <div class="stat-bar">
+                  <div class="stat-fill" style="width: 60%"></div>
+                </div>
+                <span class="stat-value">6</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+          <h2 class="section-title">PROJECTS</h2>
+
+          <div class="project-list">
+            <div class="project-item">
+              <h3 class="project-title">Dragonfly AI Platform</h3>
+              <p class="project-timeline">JUN 2024 - PRESENT</p>
+              <p class="project-description">
+                Building a collaborative, multi-LLM platform where users
+                seamlessly execute code, co-create projects intuitively via AI,
+                and access integrated tools within one workspace.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-item">NextJS</span>
+                <span class="tech-item">NestJS</span>
+                <span class="tech-item">OpenAI API</span>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h3 class="project-title">QuickText Chatbots</h3>
+              <p class="project-timeline">SEP 2023 - JUN 2024</p>
+              <p class="project-description">
+                Developed and maintained flagship chatbots using Node.js &
+                Microsoft Bot Framework, implemented microservices architecture
+                with NestJS.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-item">Node.js</span>
+                <span class="tech-item">React.js</span>
+                <span class="tech-item">NestJS</span>
+                <span class="tech-item">FastAPI</span>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <h3 class="project-title">UBIAI Front-End Code Execution</h3>
+              <p class="project-timeline">JAN 2023 - SEP 2023</p>
+              <p class="project-description">
+                Conceptualized and delivered an innovative feature that empowers
+                users to write and execute code directly from the front-end,
+                leveraging containerized microservices.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-item">ReactJs</span>
+                <span class="tech-item">Django</span>
+                <span class="tech-item">FastAPI</span>
+                <span class="tech-item">Prefect</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+          <h2 class="section-title">SKILLS</h2>
+
+          <div class="skills-container">
+            <div class="skill-category">
+              <h3 class="category-title">Frontend</h3>
+              <div class="skill-items">
+                <div class="skill-item">
+                  <span class="skill-name">React.js</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Next.js</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">React Native</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 80%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3 class="category-title">Backend</h3>
+              <div class="skill-items">
+                <div class="skill-item">
+                  <span class="skill-name">Node.js</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">NestJS</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Django</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">FastAPI</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 80%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="skill-category">
+              <h3 class="category-title">AI/ML</h3>
+              <div class="skill-items">
+                <div class="skill-item">
+                  <span class="skill-name">OpenAI API</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Other LLM API</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">LLM Rag Systems</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+          <h2 class="section-title">CONTACT</h2>
+
+          <div class="contact-terminals">
+            <div class="terminal-item">
+              <div class="terminal-header">
+                <span class="terminal-icon">></span>
+                <span class="terminal-command"
+                  >ping attigmohammed@gmail.com</span
+                >
+              </div>
+              <div class="terminal-response">
+                <p>EMAIL CONNECTION ESTABLISHED</p>
+                <p>STATUS: ONLINE</p>
+                <p>RESPONSE TIME: FAST</p>
+              </div>
+            </div>
+
+            <div class="terminal-item">
+              <div class="terminal-header">
+                <span class="terminal-icon">></span>
+                <span class="terminal-command"
+                  >connect www.linkedin.com/in/mohamed-attig</span
+                >
+              </div>
+              <div class="terminal-response">
+                <p>LINKEDIN CONNECTION ESTABLISHED</p>
+                <p>STATUS: PROFESSIONAL PROFILE FOUND</p>
+                <p>PORTFOLIO: VISIBLE</p>
+              </div>
+            </div>
+
+            <div class="contact-form">
+              <h3>SEND TRANSMISSION</h3>
+              <div class="form-group">
+                <label for="name">NAME</label>
+                <input type="text" id="name" class="pip-input" />
+              </div>
+              <div class="form-group">
+                <label for="email">EMAIL</label>
+                <input type="email" id="email" class="pip-input" />
+              </div>
+              <div class="form-group">
+                <label for="message">MESSAGE</label>
+                <textarea id="message" class="pip-input" rows="4"></textarea>
+              </div>
+              <button class="pip-button">TRANSMIT</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="pip-footer">
+        <div class="footer-text">COPYRIGHT VAULT-TEC © 2077</div>
+        <div class="radiation-meter">
+          <span class="radiation-icon">☢</span>
+          <span class="radiation-level">RADS 0</span>
+        </div>
+      </footer>
+    </div>
+    
+    <!-- Pip-Boy hardware elements -->
+    <div class="pip-boy-hardware">
+      <div class="pip-boy-knobs">
+        <div class="knob knob-top" id="knobTop"></div>
+        <div class="knob knob-middle" id="knobMiddle"></div>
+        <div class="knob knob-bottom" id="knobBottom"></div>
+      </div>
+      <div class="pip-boy-buttons">
+        <div class="button button-a" id="buttonA">A</div>
+        <div class="button button-b" id="buttonB">B</div>
+        <div class="button button-c" id="buttonC">C</div>
+      </div>
+      <div class="pip-boy-screws">
+        <div class="screw screw-1"></div>
+        <div class="screw screw-2"></div>
+        <div class="screw screw-3"></div>
+        <div class="screw screw-4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pip-cursor" id="pipCursor"></div>
+  <div class="targeting-reticle" id="targetingReticle"></div>
+
+    <script src="/js/fallout.js"></script>
+    <script src="/js/mini-game.js"></script>
+    <script>
+      // Register service worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js').then(registration => {
+            console.log('ServiceWorker registration successful');
+          }).catch(error => {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
