@@ -38,7 +38,7 @@ export default function AboutPage() {
   }
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: any) => {
       if (e.key == "Enter") {
         handleBackToHome()
       }
