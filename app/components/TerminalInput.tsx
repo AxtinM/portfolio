@@ -17,7 +17,7 @@ export const TerminalLine = () => {
 
   const isCorrectPath = useMemo(() => handlePathCheck(path), [path])
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: any) => {
     if (e.key === "Tab") {
       e.preventDefault();
       const { selectionStart, selectionEnd } = e.target;
