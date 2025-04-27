@@ -24,3 +24,35 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes blink {
+  50% {
+    caret-color: transparent;
+  }
+}
+
+.animate-blink {
+  animation: blink 0.5s infinite;
+  caret-shape: block;
+}
+
+pre {
+  font-family: "Perfect DOS VGA 437", "Courier Prime", monospace;
+  line-height: 1.2;
+  letter-spacing: 0;
+  tab-size: 4;
+}
+
+/* Ensure proper overflow handling */
+.ascii-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Responsive adjustments for ASCII art */
+@media (max-width: 640px) {
+  pre {
+    font-size: 0.7rem;
+    line-height: 1;
+  }
+}
