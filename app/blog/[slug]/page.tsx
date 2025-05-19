@@ -12,15 +12,8 @@ export async function generateMetadata({ params, searchParams }: { params: { slu
   let availableLangs = Array.from(new Set(getAvailableLanguagesForPost(params.slug)));
   let lang = searchParams?.lang;
   if (!lang) {
-    if (typeof navigator !== "undefined" && navigator.language) {
-      const browserLang = navigator.language.slice(0, 2);
-      if (availableLangs.includes(browserLang)) {
-        lang = browserLang;
-      }
-    }
-    if (!lang) {
-      lang = availableLangs.includes("en") ? "en" : availableLangs[0];
-    }
+    // Server-side only: cannot use navigator, so fallback to 'en' or first available
+    lang = availableLangs.includes("en") ? "en" : availableLangs[0];
   }
   const post = getPostBySlugAndLang(params.slug, lang);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -59,15 +52,8 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
 
   // If no lang param, try browser (on client), else fallback to en, else first available
   if (!lang) {
-    if (typeof navigator !== "undefined" && navigator.language) {
-      const browserLang = navigator.language.slice(0, 2);
-      if (availableLangs.includes(browserLang)) {
-        lang = browserLang;
-      }
-    }
-    if (!lang) {
-      lang = availableLangs.includes("en") ? "en" : availableLangs[0];
-    }
+    // Server-side only: cannot use navigator, so fallback to 'en' or first available
+    lang = availableLangs.includes("en") ? "en" : availableLangs[0];
   }
 
   const post = getPostBySlugAndLang(params.slug, lang);
