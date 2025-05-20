@@ -14,7 +14,8 @@ It’s easy to get lost in the noise of tech: new frameworks, endless docs, cons
 
 ## Mental Clarity
 
-There’s something about putting thoughts into words that clears up the mental fog. When I write, I notice patterns, spot gaps in my logic, and sometimes even solve problems I didn’t know I had. It’s not about being perfect or fancy—it’s about being real and honest with myself.
+There’s something about putting thoughts into words that clears up the mental fog.
+When I write, I notice patterns, spot gaps in my logic, and sometimes even solve problems I didn’t know I had. It’s not about being perfect or fancy—it’s about being real and honest with myself.
 
 ## For Tech Folks (Like Me)
 

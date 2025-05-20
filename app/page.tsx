@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { RetroGrid } from "@/components/ui/retro-grid";
+import { SkillsSection } from "@/components/SkillsSection";
+import { AIExpertiseSection } from "@/components/AIExpertiseSection";
+import { GitHubSection } from "@/components/GitHubSection";
 
 // Company logo SVG placeholders
 const companyLogos: Record<string, React.ReactNode> = {
@@ -183,31 +186,29 @@ export default function Home() {
                   Mohamed Attig
                 </CardTitle>
                 <CardDescription className="text-xl md:text-2xl font-bold text-muted-foreground my-4 font-[var(--font-geist-mono)] text-center">
-                  Full Stack Developer<br />
-                  Specializing in Next.js, Django/FastAPI, NodeJs, and AI-driven solutions.
+                  Full Stack Developer & AI Specialist
                 </CardDescription>
-                <CardDescription className="text-base md:text-lg text-muted-foreground mb-4 font-[var(--font-geist-mono)] text-center">
-                  I build with passion and a touch of flair,<br />
-                  From AI to web, I’m everywhere.<br />
-                  With code as my canvas, I create with pride,<br />
-                  A digital artist, on this journey I glide.<br />
-                  From Tunisia to the world, my skills I’ll share,<br />
-                  In the realm of tech, I’m a breath of fresh air.<br />
+                <CardDescription className="text-base md:text-lg text-muted-foreground mb-4 text-center">
+                  Passionate about building intelligent, scalable solutions that solve real problems.
+                  I specialize in developing AI-driven applications with Python/FastAPI backends and
+                  modern React frontends. My experience spans LLM integration, RAG architecture,
+                  and full-stack web development.
                 </CardDescription>
-                <div className="flex flex-col md:flex-row gap-4 items-center mt-2">
+                <div className="flex flex-col md:flex-row gap-4 items-center mt-4">
                   <a
                     href="mailto:attigmohammed@gmail.com"
-                    className="text-foreground bg-accent/20 px-2 py-1 rounded underline underline-offset-2 font-mono hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors"
+                    className="text-foreground bg-accent/20 px-4 py-2 rounded flex items-center gap-2 hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors"
                   >
-                    attigmohammed@gmail.com
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    Email
                   </a>
-                  <span className="hidden md:inline text-muted-foreground">|</span>
                   <a
                     href="https://www.linkedin.com/in/mohamedattig"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-foreground bg-accent/20 px-2 py-1 rounded underline underline-offset-2 font-mono hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors"
+                    className="text-foreground bg-accent/20 px-4 py-2 rounded flex items-center gap-2 hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors"
                   >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     LinkedIn
                   </a>
                 </div>
@@ -218,6 +219,21 @@ export default function Home() {
           {/* Google Calendar Booking Button */}
           <section className="w-full max-w-2xl mb-12 flex justify-center">
             <div ref={calendarBtnRef} className="w-full flex justify-center"></div>
+          </section>
+
+          {/* Skills Section - New Component */}
+          <section className="w-full mb-16">
+            <SkillsSection />
+          </section>
+
+          {/* AI Expertise Section */}
+          <section className="w-full mb-16">
+            <AIExpertiseSection />
+          </section>
+
+          {/* GitHub Section */}
+          <section className="w-full mb-16">
+            <GitHubSection />
           </section>
 
           {/* Experience Tabs */}
@@ -258,3 +274,4 @@ export default function Home() {
     </>
   );
 }
+
