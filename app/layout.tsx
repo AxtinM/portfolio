@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: "Mohamed Attig Portfolio",
     images: [
       {
-        url: "/favicon.ico",
+        url: "/me_bebop_style.png",
         width: 64,
         height: 64,
         alt: "Mohamed Attig Portfolio",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "Mohamed Attig – Full Stack Developer Portfolio",
     description:
       "Full Stack Developer specializing in Next.js, Node.js/NestJS, Django/FastAPI, and AI-driven solutions.",
-    images: ["/favicon.ico"],
+    images: ["/me_bebop_style.png"],
   },
   metadataBase: new URL("https://www.linkedin.com/in/mohamed-attig"),
   alternates: {
@@ -72,9 +72,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="icon" href="/me_bebop_style.png" type="image/png" />
+      </head>
       <body
-        className={`${geistSans.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground relative min-h-screen`}
-      >
+        className={`${geistSans.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground relative min-h-screen`}>
+      
         {/* 21dev Retro Grid Background */}
         <RetroGrid />
         <div className="relative z-10">{children}</div>
