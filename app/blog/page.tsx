@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getAllPosts } from "../../lib/blog";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { RetroGrid } from "@/components/ui/retro-grid";
 
 import type { BlogPost } from "../../lib/blog";
 
@@ -33,8 +32,7 @@ export default function BlogPage() {
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center px-4 py-8 overflow-x-hidden">
-      {/* RetroGrid Background */}
-      <RetroGrid className="z-0" />
+
 
       {/* Content Overlay */}
       <div className="relative z-10 w-full max-w-4xl mx-auto">

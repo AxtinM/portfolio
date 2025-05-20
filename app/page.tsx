@@ -174,8 +174,6 @@ export default function Home() {
         <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
       </Head>
       <main className="relative min-h-screen flex flex-col items-center justify-center px-4 py-8 overflow-x-hidden">
-        {/* RetroGrid Background */}
-        <RetroGrid className="z-0" />
 
         {/* Content Overlay */}
         <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
