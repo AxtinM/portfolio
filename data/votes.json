@@ -1,0 +1,18 @@
+[
+  {
+    "postId": "first-post",
+    "ipAddress": "::1",
+    "voteType": "up",
+    "clientData": {
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+      "language": "en-US",
+      "platform": "Linux x86_64",
+      "screenWidth": 2560,
+      "screenHeight": 1440,
+      "colorDepth": 24,
+      "referrer": "http://localhost:3000/blog",
+      "timezone": "Africa/Tunis"
+    },
+    "timestamp": "2025-05-20T22:47:27.773Z"
+  }
+]

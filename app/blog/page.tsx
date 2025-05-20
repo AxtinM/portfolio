@@ -2,6 +2,9 @@ import Link from "next/link";
 import { getAllPosts } from "../../lib/blog";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import VoteDisplay from "../../components/VoteDisplay";
+import ClientButtonWrapper from "../../components/ClientButtonWrapper";
+import { formatReadingTime, calculateReadingTime } from "../../lib/readingTime";
 
 import type { BlogPost } from "../../lib/blog";
 
@@ -66,31 +69,44 @@ export default function BlogPage() {
               </div>
             ) : (
               posts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group block focus:outline-none"
-                >
-                  <Card className="transition-all hover:scale-[1.02] hover:shadow-lg bg-card border border-border">
-                    <CardHeader>
-                      <CardTitle
-                        className="text-2xl group-hover:text-primary group-focus-within:text-primary transition-colors"
-                        tabIndex={0}
-                      >
-                        {post.title}
-                      </CardTitle>
-                      <CardDescription className="text-muted-foreground">{post.summary}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex flex-wrap gap-2 mb-2">
-                        {post.tags.map((tag: string) => (
-                          <Badge key={tag}>{tag}</Badge>
-                        ))}
-                      </div>
-                      <div className="text-xs text-muted-foreground">{new Date(post.date).toLocaleDateString()}</div>
-                    </CardContent>
-                  </Card>
-                </Link>
+                <div key={post.slug} className="relative">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="group block focus:outline-none"
+                  >
+                    <Card className="transition-all hover:scale-[1.02] hover:shadow-lg bg-card border border-border">
+                      <CardHeader>
+                        <CardTitle
+                          className="text-2xl group-hover:text-primary group-focus-within:text-primary transition-colors"
+                          tabIndex={0}
+                        >
+                          {post.title}
+                        </CardTitle>
+                        <CardDescription className="text-muted-foreground">{post.summary}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex flex-wrap gap-2 mb-2">
+                          {post.tags.map((tag: string) => (
+                            <Badge key={tag}>{tag}</Badge>
+                          ))}
+                        </div>
+                        <div className="flex justify-between items-center mt-2">
+                          <div className="flex flex-col gap-1">
+                            <div className="text-xs text-muted-foreground">{new Date(post.date).toLocaleDateString()}</div>
+                            <div className="text-xs text-muted-foreground">
+                              {formatReadingTime(calculateReadingTime(post.content))} read
+                            </div>
+                          </div>
+                          
+                          {/* Use ClientButtonWrapper to handle the click event */}
+                          <ClientButtonWrapper>
+                            <VoteDisplay postId={post.slug} />
+                          </ClientButtonWrapper>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </div>
               ))
             )}
           </div>

@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlugAndLang, getAvailableLanguagesForPost } from "../../../lib/blog";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { remark } from "remark";
 import html from "remark-html";
 import remarkGfm from "remark-gfm";
+import { calculateReadingTime, formatReadingTime } from "../../../lib/readingTime";
+import ThumbsUpButton from "../../../components/ThumbsUpButton";
+import ClientButtonWrapper from "../../../components/ClientButtonWrapper";
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params, searchParams }: { params: Promise<{ slug: string }>, searchParams: Promise<{ lang?: string }> }) {
@@ -120,13 +123,27 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
               </span>
             ))}
           </div>
-          <div className="text-xs text-muted-foreground">{new Date(post.date).toLocaleDateString()}</div>
+          <div className="flex items-center justify-between">
+            <div className="text-xs text-muted-foreground">
+              {new Date(post.date).toLocaleDateString()} • {formatReadingTime(calculateReadingTime(post.content))} read
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           <article className="prose prose-invert max-w-none">
             <div className="markdown-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
           </article>
         </CardContent>
+        <CardFooter className="border-t border-border pt-6 pb-4">
+          <div className="w-full flex justify-between items-center">
+            <div className="text-sm text-muted-foreground">
+              Did you find this article helpful?
+            </div>
+            <ClientButtonWrapper>
+              <ThumbsUpButton postId={slug} large={true} />
+            </ClientButtonWrapper>
+          </div>
+        </CardFooter>
       </Card>
     </main>
   );
