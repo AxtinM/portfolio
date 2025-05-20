@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Mohamed Attig – Full Stack Developer Portfolio",
     description:
       "Explore Mohamed Attig's professional experience, projects, and insights on technology, history, and philosophy.",
-    url: "https://www.linkedin.com/in/mohamedattig",
+    url: "https://www.linkedin.com/in/mohamed-attig",
     siteName: "Mohamed Attig Portfolio",
     images: [
       {
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
       "Full Stack Developer specializing in Next.js, Node.js/NestJS, Django/FastAPI, and AI-driven solutions.",
     images: ["/favicon.ico"],
   },
-  metadataBase: new URL("https://www.linkedin.com/in/mohamedattig"),
+  metadataBase: new URL("https://www.linkedin.com/in/mohamed-attig"),
   alternates: {
     canonical: "/",
   },

@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { RetroGrid } from "@/components/ui/retro-grid";
@@ -180,37 +181,86 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
           {/* Hero Card */}
           <section className="w-full flex flex-col items-center mb-10">
-            <Card className="w-full bg-background/90 border border-accent shadow-2xl backdrop-blur-lg">
-              <CardHeader className="flex flex-col items-center">
-                <CardTitle className="text-4xl md:text-5xl font-extrabold text-accent-foreground mb-2 font-[var(--font-geist-mono)]">
-                  Mohamed Attig
-                </CardTitle>
-                <CardDescription className="text-xl md:text-2xl font-bold text-muted-foreground my-4 font-[var(--font-geist-mono)] text-center">
-                  Full Stack Developer & AI Specialist
-                </CardDescription>
-                <CardDescription className="text-base md:text-lg text-muted-foreground mb-4 text-center">
-                  Passionate about building intelligent, scalable solutions that solve real problems.
-                  I specialize in developing AI-driven applications with Python/FastAPI backends and
-                  modern React frontends. My experience spans LLM integration, RAG architecture,
-                  and full-stack web development.
-                </CardDescription>
-                <div className="flex flex-col md:flex-row gap-4 items-center mt-4">
-                  <a
-                    href="mailto:attigmohammed@gmail.com"
-                    className="text-foreground bg-accent/20 px-4 py-2 rounded flex items-center gap-2 hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    Email
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/mohamedattig"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-foreground bg-accent/20 px-4 py-2 rounded flex items-center gap-2 hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    LinkedIn
-                  </a>
+            <Card className="w-full bg-background/90 border border-accent shadow-2xl backdrop-blur-lg overflow-hidden">
+              <CardHeader className="p-6">
+                <div className="flex flex-col md:flex-row gap-8 items-center">
+                  {/* Portrait Container */}
+                  <div className="portrait-container flex-shrink-0 mb-6 md:mb-0">
+                    <div className="portrait-wrapper relative w-[220px] h-[220px] rounded-full overflow-hidden border-2 border-accent/50 shadow-accent/30 shadow-lg animate-float">
+                      <div
+                        className="absolute inset-0 flex items-center justify-center z-10 bg-gradient-to-br from-accent/20 via-primary/10 to-secondary/20"
+                        style={{
+                          backgroundSize: "100% 100%",
+                          backgroundPosition: "center",
+                          backgroundImage: `radial-gradient(
+                            circle at center,
+                            rgba(255, 32, 78, 0.2) 0%,
+                            rgba(160, 21, 62, 0.3) 45%,
+                            rgba(93, 14, 65, 0.4) 75%
+                          )`
+                        }}
+                      >
+                        {/* Custom stylized initials as placeholder */}
+                        <div className="relative">
+                          <div className="text-5xl font-extrabold text-white/80 font-[var(--font-geist-mono)] relative z-10">MA</div>
+                          <div className="absolute -inset-1 blur-sm bg-accent/30 rounded-full -z-10"></div>
+                        </div>
+                      </div>
+                      
+                      {/* The actual image that will load on top of placeholder if available */}
+                      <div className="relative z-20 w-full h-full">
+                        <Image
+                          src="/me_bebop_style.png"
+                          alt="Mohamed Attig - Bebop Style Portrait"
+                          fill
+                          style={{ objectFit: "cover" }}
+                          className="hover:scale-105 transition-transform duration-300"
+                          priority
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Text Content Container */}
+                  <div className="text-content flex flex-col items-center md:items-start">
+                    <CardTitle className="text-4xl md:text-5xl font-extrabold text-accent-foreground mb-2 font-[var(--font-geist-mono)] text-center md:text-left">
+                      Mohamed Attig
+                    </CardTitle>
+                    <CardDescription className="text-xl md:text-2xl font-bold text-muted-foreground my-4 font-[var(--font-geist-mono)] text-center md:text-left">
+                      Full Stack Developer & AI Specialist
+                    </CardDescription>
+                    <CardDescription className="text-base md:text-lg text-muted-foreground mb-4 text-center md:text-left">
+                      Passionate about building intelligent, scalable solutions that solve real problems.
+                      I specialize in developing AI-driven applications with Python/FastAPI backends and
+                      modern React frontends. My experience spans LLM integration, RAG architecture,
+                      and full-stack web development.
+                    </CardDescription>
+                    <div className="flex flex-col md:flex-row gap-4 items-center md:items-start mt-4">
+                      <a
+                        href="mailto:attigmohammed@gmail.com"
+                        className="text-foreground bg-accent/20 px-4 py-2 rounded flex items-center gap-2 hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        Email
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/in/mohamed-attig"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-foreground bg-accent/20 px-4 py-2 rounded flex items-center gap-2 hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        LinkedIn
+                      </a>
+                      <Link
+                        href="/blog"
+                        className="text-foreground bg-accent/20 px-4 py-2 rounded flex items-center gap-2 hover:text-background hover:bg-accent focus:text-background focus:bg-accent transition-colors font-semibold"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 17.5 6H6.5A2.5 2.5 0 0 0 4 8.5v11z"></path><polyline points="8 6 12 2 16 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                        Go to Blog
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </CardHeader>
             </Card>
