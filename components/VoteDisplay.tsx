@@ -19,6 +19,7 @@ export default function VoteDisplay({ postId }: VoteDisplayProps) {
         if (response.ok) {
           const data = await response.json();
           setThumbsUpCount(data.thumbsUpCount);
+          // We don't need userVoted in the display component
         }
       } catch (error) {
         console.error("Error fetching vote count:", error);
