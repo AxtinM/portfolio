@@ -41,7 +41,7 @@ export default function AnimatedHeading({
       transition: { 
         staggerChildren: 0.06, 
         delayChildren: delay * i,
-        ease: "easeOut" 
+        ease: [0.4, 0, 0.2, 1] // Use cubic-bezier array for ease
       },
     }),
   }
