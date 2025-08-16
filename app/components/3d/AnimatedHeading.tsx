@@ -58,7 +58,6 @@ export default function AnimatedHeading({
       rotateX: 0,
       filter: "blur(0px)",
       transition: {
-        type: "spring",
         damping: 12,
         stiffness: 100,
       },
