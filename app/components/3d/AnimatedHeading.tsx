@@ -40,8 +40,7 @@ export default function AnimatedHeading({
       opacity: 1,
       transition: { 
         staggerChildren: 0.06, 
-        delayChildren: delay * i,
-        ease: [0.4, 0, 0.2, 1] // Use cubic-bezier array for ease
+        delayChildren: delay * i
       },
     }),
   }
