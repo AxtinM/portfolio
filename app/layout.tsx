@@ -1,67 +1,55 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { RetroGrid } from "@/components/ui/retro-grid";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
-  title: "Mohamed Attig – Full Stack Developer Portfolio",
+  title: {
+    default: "Mohamed Attig | Founder & AI Systems Engineer",
+    template: "%s | Mohamed Attig",
+  },
   description:
-    "Mohamed Attig is a Full Stack Developer specializing in Next.js, Node.js/NestJS, Django/FastAPI, and AI-driven solutions. Explore his professional experience, thoughts on tech, and blog.",
+    "Founder of Cortex Kernel and creator of Craftsignal. Backend engineer with 6 years of experience building reliable AI systems with Node.js and Python.",
   keywords: [
     "Mohamed Attig",
-    "Full Stack Developer",
-    "Next.js",
+    "Cortex Kernel",
+    "Craftsignal",
+    "AI systems engineer",
+    "Backend engineer",
     "Node.js",
-    "NestJS",
-    "Django",
+    "Python",
+    "LangGraph",
     "FastAPI",
-    "AI",
     "Portfolio",
-    "Tech Blog",
-    "Software Engineer",
-    "Tunisia",
-    "React",
-    "Web Development",
   ],
-  openGraph: {
-    title: "Mohamed Attig – Full Stack Developer Portfolio",
-    description:
-      "Explore Mohamed Attig's professional experience, projects, and insights on technology, history, and philosophy.",
-    url: "https://www.linkedin.com/in/mohamed-attig",
-    siteName: "Mohamed Attig Portfolio",
-    images: [
-      {
-        url: "/me_bebop_style.png",
-        width: 64,
-        height: 64,
-        alt: "Mohamed Attig Portfolio",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: "Mohamed Attig – Full Stack Developer Portfolio",
-    description:
-      "Full Stack Developer specializing in Next.js, Node.js/NestJS, Django/FastAPI, and AI-driven solutions.",
-    images: ["/me_bebop_style.png"],
-  },
-  metadataBase: new URL("https://www.linkedin.com/in/mohamed-attig"),
+  metadataBase: new URL("https://cortexkernel.com"),
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    title: "Mohamed Attig | Founder & AI Systems Engineer",
+    description:
+      "Founder-operator building robust AI applications through clean architecture and production-grade backend systems.",
+    url: "/",
+    siteName: "Mohamed Attig Portfolio",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/profile_pic.png",
+        width: 1200,
+        height: 1200,
+        alt: "Mohamed Attig portrait",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mohamed Attig | Founder & AI Systems Engineer",
+    description:
+      "Founder of Cortex Kernel. Creator of Craftsignal. Building resilient AI systems and backend architecture.",
+    images: ["/profile_pic.png"],
+  },
+  icons: {
+    icon: "/profile_pic.png",
   },
 };
 
@@ -72,15 +60,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link rel="icon" href="/me_bebop_style.png" type="image/png" />
-      </head>
-      <body
-        className={`${geistSans.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground relative min-h-screen`}>
-      
-        {/* 21dev Retro Grid Background */}
-        <RetroGrid />
-        <div className="relative z-10">{children}</div>
+      <body className="antialiased bg-background text-foreground min-h-screen">
+        {children}
       </body>
     </html>
   );

@@ -1,115 +1,134 @@
 import Link from "next/link";
-import { getAllPosts } from "../../lib/blog";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../../components/ui/card";
+import VoteDisplay from "@/components/VoteDisplay";
 import { Badge } from "@/components/ui/badge";
-import VoteDisplay from "../../components/VoteDisplay";
-import ClientButtonWrapper from "../../components/ClientButtonWrapper";
-import { formatReadingTime, calculateReadingTime } from "../../lib/readingTime";
+import { getAllPosts } from "@/lib/blog";
+import { calculateReadingTime, formatReadingTime } from "@/lib/readingTime";
 
-import type { BlogPost } from "../../lib/blog";
+import type { BlogPost } from "@/lib/blog";
 
 function dedupePostsBySlug(posts: BlogPost[], preferredLang = "en") {
   const map = new Map<string, BlogPost>();
+  const rankFor = (lang: string) => {
+    if (lang === preferredLang) return 0;
+    if (lang === "en") return 1;
+    return 2;
+  };
+
   for (const post of posts) {
-    if (!map.has(post.slug)) {
-      map.set(post.slug, post);
-    }
-    // Prefer preferredLang, then en, then first available
-    if (post.lang === preferredLang) {
-      map.set(post.slug, post);
-    } else if (post.lang === "en" && !Array.from(map.values()).some(p => p.slug === post.slug && p.lang === preferredLang)) {
+    const existing = map.get(post.slug);
+    if (!existing || rankFor(post.lang) < rankFor(existing.lang)) {
       map.set(post.slug, post);
     }
   }
+
   return Array.from(map.values());
 }
 
-export default function BlogPage() {
-  const allPosts = getAllPosts();
-  // Try to get browser language if on client, otherwise default to en
-  let preferredLang = "en";
-  if (typeof window !== "undefined" && window.navigator.language) {
-    preferredLang = window.navigator.language.slice(0, 2);
+function formatDate(input: string) {
+  const date = new Date(input);
+  if (Number.isNaN(date.getTime())) {
+    return input;
   }
-  const posts = dedupePostsBySlug(allPosts, preferredLang);
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+export default function BlogPage() {
+  const posts = dedupePostsBySlug(getAllPosts(), "en");
+  const totalTags = new Set(posts.flatMap((post) => post.tags)).size;
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center px-4 py-8 overflow-x-hidden">
+    <main className="home-shell blog-shell" aria-labelledby="blog-title">
+      <div className="home-noise" aria-hidden="true" />
+      <div className="home-vignette" aria-hidden="true" />
 
-
-      {/* Content Overlay */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto">
-        {/* Home Button */}
-        <div className="mb-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-accent text-accent-foreground font-semibold shadow-lg border border-accent/60 hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-colors"
-          >
-            <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-              <path d="M10 3L3 10H6V17H14V10H17L10 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Home
-          </Link>
-        </div>
-        <section className="mb-12">
-          <Card className="bg-background/90 border border-accent shadow-2xl backdrop-blur-lg">
-            <CardHeader>
-              <CardTitle className="text-4xl font-bold mb-2 text-accent-foreground">Blog</CardTitle>
-              <CardDescription className="text-lg text-muted-foreground">
-                Thoughts on tech, history, philosophy, and the journey of building in a fast-moving world. Here you'll find insights, lessons, and reflections from my work and interests.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </section>
-        <section>
-          <div className="grid gap-8 md:grid-cols-2">
-            {posts.length === 0 ? (
-              <div className="col-span-2 text-center text-muted-foreground text-lg">
-                No blog posts yet. Stay tuned for upcoming articles!
-              </div>
-            ) : (
-              posts.map((post) => (
-                <div key={post.slug} className="relative">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group block focus:outline-none"
-                  >
-                    <Card className="transition-all hover:scale-[1.02] hover:shadow-lg bg-card border border-border">
-                      <CardHeader>
-                        <CardTitle
-                          className="text-2xl group-hover:text-primary group-focus-within:text-primary transition-colors"
-                          tabIndex={0}
-                        >
-                          {post.title}
-                        </CardTitle>
-                        <CardDescription className="text-muted-foreground">{post.summary}</CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="flex flex-wrap gap-2 mb-2">
-                          {post.tags.map((tag: string) => (
-                            <Badge key={tag}>{tag}</Badge>
-                          ))}
-                        </div>
-                        <div className="flex justify-between items-center mt-2">
-                          <div className="flex flex-col gap-1">
-                            <div className="text-xs text-muted-foreground">{new Date(post.date).toLocaleDateString()}</div>
-                            <div className="text-xs text-muted-foreground">
-                              {formatReadingTime(calculateReadingTime(post.content))} read
-                            </div>
-                          </div>
-                          
-                          {/* Use ClientButtonWrapper to handle the click event */}
-                          <ClientButtonWrapper>
-                            <VoteDisplay postId={post.slug} />
-                          </ClientButtonWrapper>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </div>
-              ))
-            )}
+      <div className="home-content blog-content">
+        <section className="aura-hero blog-hero">
+          <div className="aura-nav">
+            <span className="aura-kicker">Writing</span>
+            <div className="aura-links" aria-label="Blog navigation">
+              <Link href="/">Home</Link>
+              <a href="#posts">Posts</a>
+            </div>
           </div>
+
+          <div className="blog-hero-copy">
+            <p className="aura-label">Notes from the build loop</p>
+            <h1 id="blog-title">Blog</h1>
+            <p className="blog-hero-summary">
+              Practical lessons from shipping AI products, backend architecture, and
+              founder-led execution in production environments.
+            </p>
+
+            <dl className="aura-facts blog-facts">
+              <div>
+                <dt>Published posts</dt>
+                <dd>{posts.length}</dd>
+              </div>
+              <div>
+                <dt>Topics covered</dt>
+                <dd>{totalTags}</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Systems thinking</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <section className="home-section" id="posts">
+          <header className="section-head blog-section-head">
+            <p>Latest writing</p>
+            <h2>Detailed breakdowns and field notes.</h2>
+          </header>
+
+          {posts.length === 0 ? (
+            <p className="blog-empty">No blog posts yet. New writing will appear here.</p>
+          ) : (
+            <div className="blog-grid">
+              {posts.map((post) => {
+                const href =
+                  post.lang === "en" ? `/blog/${post.slug}` : `/blog/${post.slug}?lang=${post.lang}`;
+
+                return (
+                  <article key={`${post.slug}-${post.lang}`} className="blog-entry">
+                    <div className="blog-entry-meta">
+                      <span>{formatDate(post.date)}</span>
+                      <span>{formatReadingTime(calculateReadingTime(post.content))} read</span>
+                    </div>
+
+                    <h3>
+                      <Link href={href} className="blog-entry-title-link">
+                        {post.title}
+                      </Link>
+                    </h3>
+                    <p className="blog-entry-summary">{post.summary}</p>
+
+                    <div className="blog-entry-tags" aria-label="Post tags">
+                      {post.tags.map((tag) => (
+                        <Badge key={tag} className="blog-tag">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+
+                    <div className="blog-entry-footer">
+                      <Link href={href} className="cta-secondary blog-read-link">
+                        Read article
+                      </Link>
+                      <div className="blog-vote-pill" aria-label="Article likes">
+                        <VoteDisplay postId={post.slug} />
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
         </section>
       </div>
     </main>
